@@ -6,5 +6,11 @@
         <file>maximize-original.png</file>
         <file>maximize-original-transparent-28.png</file>
         <file>minimize-original-transparent-28.png</file>
+        <file>avatar-outline-transparent-40.png</file>
+        <file>dropdown-transparent-24.png</file>
+        <file>mail-original-transparent-28.png</file>
+        <file>theme-original-transparent-28.png</file>
+        <file>settings-original.png</file>
+        <file>settings-original-transparent-28.png</file>
     </qresource>
 </RCC>

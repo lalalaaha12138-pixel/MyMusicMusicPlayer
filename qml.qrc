@@ -4,5 +4,7 @@
         <file>Src/LeftPage/LeftPage.qml</file>
         <file>Src/RightRect/RightPage.qml</file>
         <file>Src/BottonPage/BottonPage.qml</file>
+        <file>Src/commonUi/CommonUi.qml</file>
+        <file>Src/Minmax/Minmax.qml</file>
     </qresource>
 </RCC>
