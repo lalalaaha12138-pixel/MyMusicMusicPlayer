@@ -1,0 +1,19 @@
+# Qt Creator local settings
+*.user
+*.user.*
+*.autosave
+
+# Generated build files
+build/
+build-*/
+debug/
+release/
+.qmake.stash
+Makefile*
+qrc_*.cpp
+moc_*.cpp
+ui_*.h
+*.o
+*.obj
+*.exe
+*.dll

@@ -1,0 +1,10 @@
+<RCC>
+    <qresource prefix="/img">
+        <file>close-transparent-28.png</file>
+        <file>small-transparent-28.png</file>
+        <file>restore-original-transparent-28.png</file>
+        <file>maximize-original.png</file>
+        <file>maximize-original-transparent-28.png</file>
+        <file>minimize-original-transparent-28.png</file>
+    </qresource>
+</RCC>
