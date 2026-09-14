@@ -1,4 +1,5 @@
 import QtQuick 2.0
+import QtQuick.Window 2.12
 import QtGraphicalEffects 1.0
 Item{
 
@@ -71,9 +72,12 @@ Item{
         }
         Image {
             id: maxIcon
-            source: "/img/maximize-original-transparent-28.png"
+            source: expanded
+                    ? "qrc:/img/restore-original-transparent-28.png"
+                    : "qrc:/img/maximize-original-transparent-28.png"
 
-            property bool flag: true
+            readonly property bool expanded: window.visibility === Window.Maximized
+                                             || window.visibility === Window.FullScreen
             ColorOverlay{
                 anchors.fill: parent
                 source: maxIcon
@@ -97,16 +101,11 @@ Item{
                 }
 
                 onClicked: {
-                    if (maxIcon.flag == true){
-                        window.showMaximized()
-                        maxIcon.flag = false
-                    }else{
+                    if (maxIcon.expanded) {
                         window.showNormal()
-                        maxIcon.flag = true
+                    } else {
+                        window.showMaximized()
                     }
-                    maxIcon.source =  window.visibility === Window.Maximized
-                            ? "/img/restore-original-transparent-28.png"
-                            : "/img/maximize-original-transparent-28.png"
                 }
             }
         }

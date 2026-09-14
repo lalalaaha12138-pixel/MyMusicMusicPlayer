@@ -5,6 +5,8 @@
         <file>Src/RightRect/RightPage.qml</file>
         <file>Src/BottonPage/BottonPage.qml</file>
         <file>Src/commonUi/CommonUi.qml</file>
-        <file>Src/Minmax/Minmax.qml</file>
+        <file>Src/RightRect/minmax/Minmax.qml</file>
+        <file>Src/RightRect/log/Log.qml</file>
+        <file>Src/RightRect/seach/Seach.qml</file>
     </qresource>
 </RCC>

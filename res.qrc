@@ -12,5 +12,9 @@
         <file>theme-original-transparent-28.png</file>
         <file>settings-original.png</file>
         <file>settings-original-transparent-28.png</file>
+        <file>back-arrow-transparent-28.png</file>
+        <file>microphone-transparent-28.png</file>
+        <file>search-transparent-28.png</file>
+        <file>trash-transparent-28.png</file>
     </qresource>
 </RCC>
