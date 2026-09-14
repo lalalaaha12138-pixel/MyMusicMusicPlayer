@@ -1,0 +1,12 @@
+<RCC>
+    <qresource prefix="/">
+        <file alias="main.qml">../main.qml</file>
+        <file alias="Src/LeftPage/LeftPage.qml">../Src/LeftPage/LeftPage.qml</file>
+        <file alias="Src/RightRect/RightPage.qml">../Src/RightRect/RightPage.qml</file>
+        <file alias="Src/BottonPage/BottonPage.qml">../Src/BottonPage/BottonPage.qml</file>
+        <file alias="Src/commonUi/CommonUi.qml">../Src/commonUi/CommonUi.qml</file>
+        <file alias="Src/RightRect/minmax/Minmax.qml">../Src/RightRect/minmax/Minmax.qml</file>
+        <file alias="Src/RightRect/log/Log.qml">../Src/RightRect/log/Log.qml</file>
+        <file alias="Src/RightRect/seach/Seach.qml">../Src/RightRect/seach/Seach.qml</file>
+    </qresource>
+</RCC>

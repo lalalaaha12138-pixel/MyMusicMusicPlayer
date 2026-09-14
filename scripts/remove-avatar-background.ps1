@@ -1,5 +1,11 @@
+param(
+    [Parameter(Mandatory = $true)]
+    [string]$SourcePath,
+    [string]$OutputPath = (Join-Path $PSScriptRoot '../resources/icons/avatar-transparent-40.png')
+)
+
 Add-Type -AssemblyName System.Drawing
-$source = [System.Drawing.Bitmap]::new('C:\Users\31885\AppData\Local\Temp\codex-clipboard-9d1975a6-5a4c-4000-8374-785c5c097ca3.png')
+$source = [System.Drawing.Bitmap]::new($SourcePath)
 $result = $source.Clone()
 try {
     $queue = [System.Collections.Generic.Queue[System.Drawing.Point]]::new()
@@ -27,7 +33,7 @@ try {
         $queue.Enqueue([System.Drawing.Point]::new($p.X, $p.Y - 1))
         $queue.Enqueue([System.Drawing.Point]::new($p.X, $p.Y + 1))
     }
-    $result.Save((Join-Path $PSScriptRoot 'avatar-transparent-40.png'), [System.Drawing.Imaging.ImageFormat]::Png)
+    $result.Save([System.IO.Path]::GetFullPath($OutputPath), [System.Drawing.Imaging.ImageFormat]::Png)
     Write-Output "Size: $($result.Width)x$($result.Height); corner alpha: $($result.GetPixel(0,0).A)"
 }
 finally {

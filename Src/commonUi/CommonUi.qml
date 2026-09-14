@@ -8,6 +8,7 @@ Window {
     flags: Qt.FramelessWindowHint | Qt.Window | Qt.WindowMaximizeButtonHint |
            Qt.WindowMinimizeButtonHint |Qt.WindowSystemMenuHint
     MouseArea{
+        id:allMouseArea
         property point beforePiont: "0,0"
         anchors.fill: parent
         onPressed: {

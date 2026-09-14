@@ -1,9 +1,13 @@
-param([string[]]$Names = @('small', 'close'))
+param(
+    [string[]]$Names = @('small', 'close'),
+    [string]$SourceDirectory = (Join-Path $PSScriptRoot '../resources/source'),
+    [string]$OutputDirectory = (Join-Path $PSScriptRoot '../resources/icons')
+)
 
 Add-Type -AssemblyName System.Drawing
 
 foreach ($name in $Names) {
-    $source = [System.Drawing.Bitmap]::new((Join-Path $PSScriptRoot "$name.png"))
+    $source = [System.Drawing.Bitmap]::new((Join-Path $SourceDirectory "$name.png"))
     $result = [System.Drawing.Bitmap]::new($source.Width, $source.Height)
     try {
         $background = $source.GetPixel(0, 0).R
@@ -22,7 +26,7 @@ foreach ($name in $Names) {
                 $result.SetPixel($x, $y, [System.Drawing.Color]::FromArgb($alpha, $foreground, $foreground, $foreground))
             }
         }
-        $path = Join-Path $PSScriptRoot "$name-transparent-28.png"
+        $path = Join-Path $OutputDirectory "$name-transparent-28.png"
         $result.Save($path, [System.Drawing.Imaging.ImageFormat]::Png)
         Write-Output "$path : $($result.Width) x $($result.Height)"
     }
