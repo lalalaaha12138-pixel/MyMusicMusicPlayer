@@ -1,6 +1,7 @@
 import QtQuick 2.0
 import QtQuick.Window 2.12
 import QtGraphicalEffects 1.0
+import "../../basic"
 Item{
 
     Row{
@@ -18,12 +19,12 @@ Item{
             ColorOverlay{
                 anchors.fill: miniIcon
                 source: miniIcon
-                color: "#75777f"
+                color: BasicConfig.iconNormal
             }
 
             layer.effect: ColorOverlay{
                 source: miniIcon
-                color: "white"
+                color: BasicConfig.iconHover
             }
             MouseArea{
                 anchors.fill:parent
@@ -45,12 +46,12 @@ Item{
             ColorOverlay{
                 anchors.fill:parent
                 source: minimoreIcon
-                color: "#75777f"
+                color: BasicConfig.iconNormal
             }
             layer.enabled: false
             layer.effect: ColorOverlay{
                 source: minimoreIcon
-                color: "white"
+                color: BasicConfig.iconHover
             }
 
             MouseArea{
@@ -81,13 +82,13 @@ Item{
             ColorOverlay{
                 anchors.fill: parent
                 source: maxIcon
-                color: "#75777f"
+                color: BasicConfig.iconNormal
             }
 
             layer.enabled: false
             layer.effect: ColorOverlay{
                 source: maxIcon
-                color: "white"
+                color: BasicConfig.iconHover
             }
             MouseArea{
                 hoverEnabled: true
@@ -112,18 +113,19 @@ Item{
         Image {
             id: closeIcon
             source: "/img/close-transparent-28.png"
+//            source: "qrc:/img/search-transparent-28.png"
             anchors.verticalCenter: parent.verticalCenter
             ColorOverlay{
                 anchors.fill: closeIcon
                 source: closeIcon
-                color: "#75777f"
+                color: BasicConfig.iconNormal
             }
 
             layer.enabled: false
             layer.effect: ColorOverlay{
 //                        anchors.fill: parent
                 source: closeIcon
-                color: "white"
+                color: BasicConfig.iconHover
             }
 
             MouseArea{

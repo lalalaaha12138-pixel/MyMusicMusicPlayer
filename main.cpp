@@ -14,7 +14,10 @@ int main(int argc, char *argv[])
         if (!obj && url == objUrl)
             QCoreApplication::exit(-1);
     }, Qt::QueuedConnection);
+    qmlRegisterSingletonType(
+        QUrl("qrc:/Src/basic/BasicConfig.qml"),
+        "BasicConfig", 1, 0, "BasicConfig"
+    );
     engine.load(url);
-
     return app.exec();
 }

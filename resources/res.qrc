@@ -16,5 +16,15 @@
         <file alias="microphone-transparent-28.png">icons/microphone-transparent-28.png</file>
         <file alias="search-transparent-28.png">icons/search-transparent-28.png</file>
         <file alias="trash-transparent-28.png">icons/trash-transparent-28.png</file>
+        <file alias="previous-track-transparent-28.png">icons/previous-track-transparent-28.png</file>
+        <file alias="next-track-transparent-28.png">icons/next-track-transparent-28.png</file>
+        <file alias="volume-transparent-28.png">icons/volume-transparent-28.png</file>
+        <file alias="more-horizontal-transparent-28.png">icons/more-horizontal-transparent-28.png</file>
+        <file alias="playlist-add-transparent-28.png">icons/playlist-add-transparent-28.png</file>
+        <file alias="play-transparent-28.png">icons/play-transparent-28.png</file>
+    </qresource>
+    <qresource prefix="/othersPic">
+        <file>others/pic.png</file>
+        <file>others/qrcode.png</file>
     </qresource>
 </RCC>

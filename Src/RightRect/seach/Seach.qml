@@ -2,15 +2,17 @@ import QtQuick 2.12
 import QtQuick.Window 2.12
 import QtGraphicalEffects 1.0
 import QtQuick.Controls 2.12
+import "../../basic"
 Row{
     id: search
+    spacing: 8
 //        y:10
 
 
     Rectangle{
         width: 28
-        height:  35
-        radius: 10
+        height: 34
+        radius: 6
         color: "transparent"
         Image {
             id: leftArrow
@@ -18,7 +20,7 @@ Row{
             anchors.fill:parent
             ColorOverlay{
                 source: leftArrow
-                color: "#75777f"
+                color: BasicConfig.iconNormal
             }
 
 
@@ -27,7 +29,7 @@ Row{
             layer.enabled: false
             layer.effect: ColorOverlay{
                 source: leftArrow
-                color: "white"
+                color: BasicConfig.iconHover
             }
 
             MouseArea{
@@ -45,35 +47,23 @@ Row{
     TextField {
         id:serchFiled
         width: 300
-        height: 35
+        height: 34
         selectByMouse: true
         leftPadding: 40
-        placeholderText:"yes yes"
-        placeholderTextColor:"white"
-        color: "white"
-        font.pixelSize : 16
+        placeholderText: "搜索音乐"
+        placeholderTextColor: BasicConfig.textSecondary
+        color: BasicConfig.textPrimary
+        font.pixelSize: 14
         font.family:"微软雅黑 Light"
 
         background: Rectangle{
             anchors.fill:parent
-            radius:5
-            gradient: Gradient{
-                orientation:Gradient.Horizontal
-                GradientStop{color: "#21283d";position: 0}
-                GradientStop{color: "#382635";position: 1}
-            }
-
-            Rectangle{
-                id:innerRect
-                property real gradientStopNumber: serchFiled.activeFocus ? 0 : 1
-                anchors.fill:parent
-                anchors.margins: 2
-                gradient: Gradient{
-                    orientation: Gradient.Horizontal
-                    GradientStop{color: "#21283d";position: 0}
-                    GradientStop{color: "#382635";position: innerRect.gradientStopNumber}
-                }
-            }
+            radius: 6
+            color: BasicConfig.inputBackground
+            border.width: 1
+            border.color: serchFiled.activeFocus
+                          ? BasicConfig.accent : BasicConfig.border
+            Behavior on color { ColorAnimation { duration: 160 } }
         }
         Image {
             id: seachIcon
@@ -81,6 +71,11 @@ Row{
             source: "qrc:/img/search-transparent-28.png"
             anchors.verticalCenter: parent.verticalCenter
             anchors.left: parent.left
+            ColorOverlay {
+                anchors.fill: seachIcon
+                source: seachIcon
+                color: BasicConfig.textSecondary
+            }
         }
         onPressed: {
             popup.open()
@@ -113,26 +108,29 @@ Row{
         }
         padding: 0
         width: parent.width
-        height: 600
+        height: 475
         y: serchFiled.height + 10
 //        property real isClikedFromSearch: serchFiled.activeFocus ? 0 : 1
         background: Rectangle{
             anchors.fill:parent
 
-            color: "#2d2d37"
-            radius: 5
+            color: BasicConfig.elevatedBackground
+            border.width: 1
+            border.color: BasicConfig.border
+            radius: 6
+            Behavior on color { ColorAnimation { duration: 160 } }
         }
         contentItem: Flickable{
                  id: searchFlick
                  clip: true
                  contentWidth: width
-//                 contentHeight: popupColumn.y + popupColumn.implicitHeight + 10
-                 contentHeight: 1200
+                 contentHeight: Math.max(height,
+                                         popupColumn.y + popupColumn.implicitHeight + 10)
                  flickableDirection: Flickable.VerticalFlick
                  boundsBehavior: Flickable.StopAtBounds
-//                 onContentHeightChanged: {
-//                     contentY = Math.min(contentY, Math.max(0, contentHeight - height))
-//                 }
+                 onContentHeightChanged: {
+                     contentY = Math.min(contentY, Math.max(0, contentHeight - height))
+                 }
                  ScrollBar.vertical: ScrollBar {
                      id: searchScrollBar
                      policy: ScrollBar.AsNeeded
@@ -145,7 +143,7 @@ Row{
                      x: 20
                      y: 10
                      width: Math.max(0, searchFlick.width - 40)
-                     spacing: 20
+                     spacing: 16
                      Item{
                          id:historyItem
                          width:parent.width
@@ -156,14 +154,14 @@ Row{
                              anchors.leftMargin: 10
                              anchors.top: parent.top
                              anchors.topMargin: 10
-                             width: 50
-                             height: 30
+                             width: 72
+                             height: 28
                              color: "transparent"
                              Label{
                                  anchors.centerIn: parent
                                  text: "历史记录"
-                                 color: "white"
-                                 font.pixelSize: 20
+                                 color: BasicConfig.textPrimary
+                                 font.pixelSize: 16
                                  font.family: "微软雅黑 Light"
                              }
                          }
@@ -177,12 +175,12 @@ Row{
                              source: "qrc:/img/trash-transparent-28.png"
                              layer.effect: ColorOverlay{
                                  source: deleteIcon
-                                 color: "white"
+                                 color: BasicConfig.iconHover
                              }
                              ColorOverlay{
                                  source: deleteIcon
                                  anchors.fill: parent
-                                 color: "#75777f"
+                                 color: BasicConfig.iconNormal
                              }
 
                              layer.enabled: false
@@ -208,8 +206,8 @@ Row{
                                   anchors.top: historyItem.top
                                   anchors.left: parent.left
                                   anchors.right: parent.right
-                                  anchors.topMargin : 60
-                                  spacing: 20
+                                  anchors.topMargin: 50
+                                  spacing: 10
                                   Repeater{
                                       id:singRepeat
 
@@ -218,11 +216,12 @@ Row{
                                       delegate: Rectangle{
                                           id:singDelegate
                                           width: Math.min(dataLabel.implicitWidth + 20, singFlow.width)
-                                          height: 40
-                                          border.color: "#45454e"
+                                          height: 32
+                                          border.color: BasicConfig.border
                                           border.width: 1
-                                          color: "#2d2d37"
-                                          radius: 15
+                                          color: historyMouse.containsMouse
+                                                 ? BasicConfig.chipHover : BasicConfig.chipBackground
+                                          radius: 6
                                           Label{
 //         		     	  		                anchors.fill: parent
                                               anchors.centerIn: parent
@@ -230,26 +229,19 @@ Row{
                                               text: singModel.get(index).singname
                                               width: parent.width - 20
                                               elide: Text.ElideRight
-                                              font.pixelSize: 20
-                                              color: "#ddd"
+                                              font.pixelSize: 14
+                                              color: historyMouse.containsMouse
+                                                     ? BasicConfig.textPrimary : BasicConfig.textSecondary
                                               font.family: "微软雅黑 Light"
-                                              height: 25
+                                              height: 20
                                           }
 
 
                                           MouseArea{
+                                              id: historyMouse
                                               anchors.fill: parent
                                               hoverEnabled: true
-                                              onEntered: {
-                                                  dataLabel.color = "#393943"
-                                                  singDelegate.color = "white"
-                                                  cursorShape = Qt.PointingHandCursor
-                                              }
-                                              onExited: {
-                                                  singDelegate.color = "#2d2d37"
-                                                  dataLabel.color = "#ddd"
-                                                  cursorShape = Qt.ArrowCursor
-                                              }
+                                              cursorShape: Qt.PointingHandCursor
 
                                               onClicked: {
 
@@ -261,20 +253,22 @@ Row{
                                   }
                                   Rectangle {
                                       id: historyToggle
-                                      width: 40
-                                      height: 40
+                                      width: 32
+                                      height: 32
                                       visible: singModel.count > 6
-                                      radius: 15
-                                      border.color: "#45454e"
+                                      radius: 6
+                                      border.color: BasicConfig.border
                                       border.width: 1
-                                      color: toggleMouse.highlighted ? "white" : "#2d2d37"
+                                      color: toggleMouse.highlighted
+                                             ? BasicConfig.chipHover : BasicConfig.chipBackground
 
                                       Label {
                                           anchors.centerIn: parent
                                           text: ">"
                                           rotation: singRepeat.showall ? -90 : 90
-                                          font.pixelSize: 20
-                                          color: toggleMouse.highlighted ? "#393943" : "#ddd"
+                                          font.pixelSize: 18
+                                          color: toggleMouse.highlighted
+                                                 ? BasicConfig.textPrimary : BasicConfig.textSecondary
                                       }
 //         		     	  		        ToolTip.visible: toggleMouse.containsMouse
 //         		     	  		        ToolTip.text: singRepeat.showall ? "收起" : "展开"
@@ -310,15 +304,15 @@ Row{
                          height: hotSearchLabel.height + 12 + hotList.height
                          Label{
                              id:hotSearchLabel
-                             color:"#7f7f85"
+                             color: BasicConfig.textSecondary
                              text:"热搜榜"
-                             font.pixelSize: 18
+                             font.pixelSize: 16
                              font.family: "微软雅黑 Light"
 
                              anchors.left: parent.left
 //         		               anchors.leftMargin: 10
                              anchors.top: parent.top
-                             height: 30
+                             height: 26
                          }
 
                          ListModel{
@@ -339,22 +333,27 @@ Row{
                              anchors.topMargin: 12
                              anchors.left: parent.left
                              anchors.right: parent.right
-                             height: count * 36
+                             height: count * 34
                              interactive: false
                              clip: true
-                             model: hotListModel
-                             delegate: Rectangle{
-                                 width: hotList.width
-                                 height: 36
-                                 color: "transparent"
+                              model: hotListModel
+                              delegate: Rectangle{
+                                  id: hotDelegate
+                                  objectName: "hotSearchDelegate"
+                                  width: hotList.width
+                                  height: 34
+                                  color: hotMouse.containsMouse
+                                         ? BasicConfig.rowHover : "transparent"
+                                  radius: 4
                                  Label{
                                      id:hotRank
                                      anchors.left: parent.left
                                      anchors.verticalCenter: parent.verticalCenter
                                      width: 30
                                      text: (index + 1) + "."
-                                     color: index < 3 ? "#ff4b4b" : "white"
-                                     font.pixelSize: 18
+                                      color: index < 3
+                                             ? BasicConfig.accent : BasicConfig.textSecondary
+                                      font.pixelSize: 14
                                      font.family: "微软雅黑 Light"
                                  }
                                  Label{
@@ -364,19 +363,17 @@ Row{
                                      anchors.verticalCenter: parent.verticalCenter
                                      text: hotName
                                      elide: Text.ElideRight//文字超出控件宽度时，如何用省略号显示
-                                     color: "white"
-                                     font.pixelSize: 18
+                                      color: BasicConfig.textPrimary
+                                      font.pixelSize: 14
                                      font.family: "微软雅黑 Light"
 
                                  }
-                                 MouseArea{
-                                     anchors.fill:parent
-                                     hoverEnabled: true
-                                     onEntered:
-                                         parent.color = "#8f8f93"
-                                     onExited:
-                                         parent.color = "transparent"
-                                 }
+                                  MouseArea{
+                                      id: hotMouse
+                                      anchors.fill:parent
+                                      hoverEnabled: true
+                                      cursorShape: Qt.PointingHandCursor
+                                  }
                              }
 
 
@@ -389,12 +386,12 @@ Row{
 
     Rectangle{
         id:sound
-        width: 30
-        height: 35
-        color: "transparent"
-        border.color: "#36262f"
+        width: 34
+        height: 34
+        color: soundMouse.containsMouse ? BasicConfig.chipHover : "transparent"
+        border.color: BasicConfig.border
         border.width: 1
-        radius: 10
+        radius: 6
         Image {
             id: micphone
             source: "qrc:/img/microphone-transparent-28.png"
@@ -402,18 +399,14 @@ Row{
             ColorOverlay{
                 anchors.fill: parent
                 source: micphone
-                color: "#75777f"
+                color: BasicConfig.iconNormal
             }
         }
         MouseArea{
+            id: soundMouse
             anchors.fill: parent
             hoverEnabled: true
-            onEntered: {
-                sound.color = "#4a3e4e"
-            }
-            onExited: {
-                sound.color = "transparent"
-            }
+            cursorShape: Qt.PointingHandCursor
         }
     }
 

@@ -8,10 +8,7 @@ Rectangle{
     Seach{
         id:seach
         anchors.left: parent.left
-        //        anchors.right: otherRow.left
-        anchors.top: parent.top
-        anchors.topMargin: 15
-        anchors.verticalCenter: otherRow.verticalCenter
+        anchors.verticalCenter: minmax.verticalCenter
     }
 
     Log{

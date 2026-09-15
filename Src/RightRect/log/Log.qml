@@ -1,6 +1,9 @@
 import QtQuick 2.0
 import QtQuick.Window 2.12
 import QtGraphicalEffects 1.0
+import QtQuick.Controls 2.12
+
+import "../../basic"
 Row{
     id:otherRow
     spacing: 10
@@ -23,23 +26,29 @@ Row{
             id: avatarIcon
             source: "qrc:/img/avatar-outline-transparent-40.png"
         }
+        ColorOverlay {
+            anchors.fill: avatarIcon
+            source: avatarIcon
+            color: BasicConfig.iconNormal
+        }
     }
     Text {
         id: loadStateText
         text: "未登录"
-        color:"#75777f"
+        color: loginTextMouse.containsMouse
+               ? BasicConfig.iconHover : BasicConfig.textSecondary
         font.pixelSize: 14
         font.family: "微软雅黑 Light"
         anchors.verticalCenter: parent.verticalCenter
         MouseArea{
+            id: loginTextMouse
             anchors.fill: parent
             hoverEnabled: true
-            onEntered: {
-                loadStateText.color = "white"
-            }
-            onExited: {
-                loadStateText.color = "#75777f"
+            cursorShape: Qt.PointingHandCursor
 
+            onClicked: {
+                console.log("yes")
+                BasicConfig.openloginPopup()
             }
         }
     }
@@ -50,10 +59,16 @@ Row{
         id:loginImage
         source: "qrc:/img/dropdown-transparent-24.png"
 
+        ColorOverlay {
+            anchors.fill: loginImage
+            source: loginImage
+            color: BasicConfig.iconNormal
+        }
+
         layer.enabled: false
         layer.effect: ColorOverlay{
             source: loginImage
-            color: "white"
+            color: BasicConfig.iconHover
         }
 
         MouseArea{
@@ -74,12 +89,12 @@ Row{
         ColorOverlay{
             anchors.fill: settingIcon
             source: settingIcon
-            color: "#75777f"
+            color: BasicConfig.iconNormal
         }
         layer.enabled: false
         layer.effect: ColorOverlay{
             source: settingIcon
-            color: "white"
+            color: BasicConfig.iconHover
         }
 
         MouseArea{
@@ -100,23 +115,28 @@ Row{
         ColorOverlay{
             anchors.fill: themeIcon
             source: themeIcon
-            color: "#75777f"
+            color: BasicConfig.iconNormal
         }
         layer.enabled: false
         layer.effect: ColorOverlay{
             source: themeIcon
-            color: "white"
+            color: BasicConfig.iconHover
         }
 
         MouseArea{
+            id: themeMouse
             anchors.fill: parent
             hoverEnabled: true
+            cursorShape: Qt.PointingHandCursor
+            ToolTip.visible: containsMouse
+            ToolTip.text: BasicConfig.isDark ? "切换到浅色模式" : "切换到深色模式"
             onEntered: {
                 themeIcon.layer.enabled = true
             }
             onExited:{
                 themeIcon.layer.enabled = false
             }
+            onClicked: BasicConfig.toggleTheme()
         }
     }
     Image{
@@ -125,12 +145,12 @@ Row{
         ColorOverlay{
             anchors.fill: mailIcon
             source: mailIcon
-            color: "#75777f"
+            color: BasicConfig.iconNormal
         }
         layer.enabled: false
         layer.effect: ColorOverlay{
             source: mailIcon
-            color: "white"
+            color: BasicConfig.iconHover
         }
 
         MouseArea{
@@ -149,7 +169,7 @@ Row{
         width: 1
         height: 28
 
-        color: "#75777f"
+        color: BasicConfig.divider
     }
 
 

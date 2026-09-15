@@ -8,5 +8,7 @@
         <file alias="Src/RightRect/minmax/Minmax.qml">../Src/RightRect/minmax/Minmax.qml</file>
         <file alias="Src/RightRect/log/Log.qml">../Src/RightRect/log/Log.qml</file>
         <file alias="Src/RightRect/seach/Seach.qml">../Src/RightRect/seach/Seach.qml</file>
+        <file alias="Src/basic/BasicConfig.qml">../Src/basic/BasicConfig.qml</file>
+        <file alias="Src/basic/qmldir">../Src/basic/qmldir</file>
     </qresource>
 </RCC>
