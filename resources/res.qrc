@@ -26,5 +26,11 @@
     <qresource prefix="/othersPic">
         <file>others/pic.png</file>
         <file>others/qrcode.png</file>
+        <file>others/doubao.png</file>
+        <file>others/juan.png</file>
+        <file>others/liang.png</file>
+        <file>others/liangjieshi.png</file>
+        <file>others/lulu.png</file>
+        <file>others/naiwa.png</file>
     </qresource>
 </RCC>

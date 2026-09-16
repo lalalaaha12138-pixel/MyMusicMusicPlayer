@@ -83,17 +83,17 @@ Row{
     }
     ListModel{
         id:singModel
-        ListElement{singname:"123"}
-        ListElement{singname:"124"}
-        ListElement{singname:"12511"}
-        ListElement{singname:"126"}
-        ListElement{singname:"1271111"}
-        ListElement{singname:"12822"}
-        ListElement{singname:"129999"}
-        ListElement{singname:"1299922"}
-        ListElement{singname:"1299921"}
-        ListElement{singname:"129992244"}
-        ListElement{singname:"12999221111"}
+        ListElement{singname:"晴天"}
+        ListElement{singname:"稻香"}
+        ListElement{singname:"夜曲"}
+        ListElement{singname:"七里香"}
+        ListElement{singname:"起风了"}
+        ListElement{singname:"孤勇者"}
+        ListElement{singname:"如愿"}
+        ListElement{singname:"光年之外"}
+        ListElement{singname:"平凡之路"}
+        ListElement{singname:"演员"}
+        ListElement{singname:"我怀念的"}
 
     }
 
@@ -308,7 +308,6 @@ Row{
                              text:"热搜榜"
                              font.pixelSize: 16
                              font.family: "微软雅黑 Light"
-
                              anchors.left: parent.left
 //         		               anchors.leftMargin: 10
                              anchors.top: parent.top
@@ -317,14 +316,14 @@ Row{
 
                          ListModel{
                              id:hotListModel
-                             ListElement{hotName:"fdfdg22g"}
-                             ListElement{hotName:"fdfd2gg"}
-                             ListElement{hotName:"fdfdg33g"}
-                             ListElement{hotName:"fdfdg13g"}
-                             ListElement{hotName:"fdfdg33g"}
-                             ListElement{hotName:"fdfdg33g"}
-                             ListElement{hotName:"fdfdg1g"}
-                             ListElement{hotName:"fdfdg2344g"}
+                             ListElement{hotName:"天外来物"}
+                             ListElement{hotName:"小美满"}
+                             ListElement{hotName:"乌梅子酱"}
+                             ListElement{hotName:"这世界那么多人"}
+                             ListElement{hotName:"一路生花"}
+                             ListElement{hotName:"年少有为"}
+                             ListElement{hotName:"海阔天空"}
+                             ListElement{hotName:"平凡之路"}
                          }
 
                          ListView{

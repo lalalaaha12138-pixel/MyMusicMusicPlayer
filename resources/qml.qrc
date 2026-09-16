@@ -10,5 +10,6 @@
         <file alias="Src/RightRect/seach/Seach.qml">../Src/RightRect/seach/Seach.qml</file>
         <file alias="Src/basic/BasicConfig.qml">../Src/basic/BasicConfig.qml</file>
         <file alias="Src/basic/qmldir">../Src/basic/qmldir</file>
+        <file>../Src/RightRect/cherryPick/CherryPick.qml</file>
     </qresource>
 </RCC>

@@ -6,7 +6,7 @@ QtObject {
     id: config
 
     signal openloginPopup() //打开扫码登录弹窗
-
+    signal otherMouseArea()
     property Settings appearanceSettings: Settings {
         category: "Appearance"
         property string selectedTheme: "dark"
@@ -23,6 +23,8 @@ QtObject {
     readonly property color chipBackground: isDark ? "#2b2d35" : "#f1f2f5"
     readonly property color chipHover: isDark ? "#373a44" : "#e4e7ec"
     readonly property color rowHover: isDark ? "#30323a" : "#e9ebef"
+    readonly property color titleHover: isDark ? "#EF5E5E" : "#f8eaed"
+    readonly property color titleNormal: isDark ? "#13131a" : "#e9ebef"
 
     readonly property color textPrimary: isDark ? "#f3f4f6" : "#202228"
     readonly property color textSecondary: isDark ? "#9a9daa" : "#737782"

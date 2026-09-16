@@ -31,5 +31,6 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
 
 DISTFILES += \
+    Src/RightRect/cherryPick/CherryPick.qml \
     scripts/remove-avatar-background.ps1 \
     scripts/remove-icon-background.ps1

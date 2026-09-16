@@ -33,64 +33,97 @@ Rectangle{
     //
     ListModel{
         id:qsrr
-        ListElement{name1:"ddd"}
-        ListElement{name1:"bbb"}
-        ListElement{name1:"ccc"}
-        ListElement{name1:"ddd1"}
+        ListElement{name1:"精选"}
+        ListElement{name1:"歌单广场"}
+        ListElement{name1:"排行榜"}
+        ListElement{name1:"歌手"}
     }
-    Item{
-//       anchors.top: minmax
-//       anchors.left: parent.left
-//       anchors.leftMargin: 20
-       y :80
-       anchors.left: parent.left
-       anchors.margins: 20
-       Flow{
-           id:titleFlow
-           anchors.top: parent.top
-           width: 300
-           height: 50
-           spacing: 10
-           Repeater{
-               id:titleRepeater
-               model: qsrr
-               delegate: Rectangle{
-                   id:dsf
-                   width: modelLabel.width
-                   height: modelLabel.height + modelRect.height + 5
-                   color: titleMouseArea.containsMouse ? BasicConfig.iconHover:BasicConfig.iconNormal
-                   Label{
-                       id:modelLabel
-                       anchors.centerIn: parent
+    Item {
+        id:titleItem
+        anchors.top: parent.top
+        anchors.topMargin: 80
+        anchors.left: parent.left
+        anchors.leftMargin: 20
+        width: titleFlow.width
+        height: titleFlow.height
 
-                       text:qsrr.get(index).name1
-//                       qDebug()<<listmodel1.get(index).name1
-                       font.family: "微软雅黑 Light"
-                       font.pixelSize:25
-                       color: "white"
-
-                   }
-                   Rectangle{
-                       id:modelRect
-                       anchors.top : modelLabel.bottom
-                       width: modelLabel.width -3
-                       height: 5
-
-                       color: BasicConfig.progressTrack
-
-                   }
-
-                   MouseArea{
-                       id:titleMouseArea
-                       anchors.fill:parent
-                       hoverEnabled: true
-
-                   }
-
+        Flow {
+            id: titleFlow
+            anchors.top: parent.top
+            width: 350
+            height: 50
+            spacing: 10
+            Connections{
+               target: BasicConfig
+               onOtherMouseArea:{
+                    titleRepeater.currentIndex = -1
                }
-           }
-       }
+
+            }
+
+            Repeater {
+                id: titleRepeater
+                property int currentIndex: -1   // 当前选中项
+                model: qsrr
+
+                delegate: Rectangle {
+                    id: dsf
+                    readonly property bool selected: titleRepeater.currentIndex === index
+                    readonly property bool highlighted: selected || titleMouseArea.containsMouse
+
+                    width: modelLabel.width + 16
+                    height: modelLabel.height + 8
+                    radius: 10
+                    color: highlighted ? BasicConfig.titleHover : BasicConfig.titleNormal
+                    scale: titleMouseArea.pressed ? 0.97 : (highlighted ? 1.02 : 1.0)
+
+                    Behavior on color {
+                        ColorAnimation {
+                            duration: 160
+                            easing.type: Easing.OutCubic
+                        }
+                    }
+
+                    Behavior on scale {
+                        NumberAnimation {
+                            duration: 120
+                            easing.type: Easing.OutCubic
+                        }
+                    }
+
+                    Label {
+                        id: modelLabel
+                        anchors.centerIn: parent
+                        text: qsrr.get(index).name1
+                        font.family: "微软雅黑 Light"
+                        font.pixelSize: 20
+                        color: BasicConfig.textPrimary
+                    }
+
+                    MouseArea {
+                        id: titleMouseArea
+                        anchors.fill: parent
+                        hoverEnabled: true
+                        cursorShape: Qt.PointingHandCursor
+                        onClicked: titleRepeater.currentIndex = index
+                    }
+                }
+            }
+        }
     }
+    StackView {
+        id: cloudMusicCherryPick
+        anchors.left: parent.left
+        anchors.leftMargin: 20
+        anchors.top: titleItem.bottom
+        anchors.topMargin: 10
+        anchors.bottom: parent.bottom
+        anchors.right: parent.right
+        anchors.rightMargin: 20
+        clip: true
+        initialItem:"./cherryPick/CherryPick.qml"
+    }
+
 
 }
 
